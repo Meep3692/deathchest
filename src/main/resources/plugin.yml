@@ -1,0 +1,4 @@
+name: deathchest
+version: '${project.version}'
+main: ca.awoo.deathchest.DeathChest
+api-version: '1.20'
