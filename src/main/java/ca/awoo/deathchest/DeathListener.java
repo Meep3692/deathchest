@@ -49,11 +49,11 @@ public class DeathListener implements Listener{
     private Pair<Location, Location> getFreeSpaceForChest(Location deathLoc){
         BlockFace[] faces = new BlockFace[]{BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
         while(true){
-            while(deathLoc.getBlock().getType().isSolid() || deathLoc.getWorld().getMinHeight() > deathLoc.getBlockY()){
+            while(!deathLoc.getBlock().getType().isAir() || deathLoc.getWorld().getMinHeight() > deathLoc.getBlockY()){
                 deathLoc.add(0, 1, 0);
             }
             for(BlockFace face : faces){
-                if(!deathLoc.getBlock().getRelative(face).getType().isSolid()){
+                if(deathLoc.getBlock().getRelative(face).getType().isAir()){
                     return new Pair<Location, Location>(deathLoc, deathLoc.getBlock().getRelative(face).getLocation());
                 }
             }
